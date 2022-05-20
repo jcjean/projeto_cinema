@@ -1,9 +1,9 @@
 class Seat:
-    def __init__(self, id, occupied, owner, ownerNumber):
+    def __init__(self, id):
         self.__id = id
-        self.__occupied = occupied
-        self.__owner = owner
-        self.__ownerNumber = ownerNumber
+        self.__occupied = False
+        self.__owner = ""
+        self.__ownerNumber = 0
     
     @property
     def id(self):

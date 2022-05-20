@@ -6,5 +6,5 @@ class Room:
         self.__seats = list()
         for i in range(26):
             for j in range(9):
-                self.__seats.append( Seat(f'{ord("A") + i}' + f"{j}" , False, None, None))
+                self.__seats.append( Seat(f'{ord("A") + i}' + f"{j}"))
         self.__nameOfCine = nameOfCine
