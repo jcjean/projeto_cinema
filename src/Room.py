@@ -1,10 +1,5 @@
-from Seat import Seat
-
+from Film import Film
 
 class Room:
-    def __init__(self, nameOfCine):
-        self.__seats = list()
-        for i in range(26):
-            for j in range(9):
-                self.__seats.append( Seat(f'{ord("A") + i}' + f"{j}"))
-        self.__nameOfCine = nameOfCine
+    def __init__(self):
+        self.__films = list()
