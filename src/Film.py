@@ -1,15 +1,15 @@
 from Seat import Seat
 
 class Film:
-    def __init__(self):
+    def __init__(self, nameFilm, photoEnd, dataIni, dataEnd):
         self.__seats = list()
         for i in range(26):
             for j in range(9):
                 self.__seats.append( Seat(f'{ord("A") + i}' + f"{j}"))
-        self.__nameFilm = ""
-        self.__photoEnd = ""
-        self.__dataIni = ""
-        self.__dataEnd = ""
+        self.__nameFilm = nameFilm
+        self.__photoEnd = photoEnd
+        self.__dataIni = dataIni
+        self.__dataEnd = dataEnd
     
     @property
     def nameFilm(self):
