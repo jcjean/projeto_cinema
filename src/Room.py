@@ -15,3 +15,11 @@ class Room:
     @name.setter
     def name(self, name):
         self.__name = name
+
+    @property
+    def films(self):
+        return self.__films
+
+    @films.setter
+    def films(self, films):
+        self.__films = films

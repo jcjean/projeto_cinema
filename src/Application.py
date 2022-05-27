@@ -1,16 +1,25 @@
+from cProfile import label
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
+from Cine import Cine
+from Film import Film
 
 root = tk.Tk()
 
 class Application:
     def __init__(self):
+        cineData = Cine()
         self.root = root
         self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png"))
+        self.imgFilm = []
         self.tela()
         self.rooms()
-        self.addRoom()
+        for i in range(1 , 7):
+            if i <= 3:
+                self.Films(i/10 * 3, 0.2, i-1, cineData.rooms[1].films[i-1].photoEnd, cineData.rooms[1].films[i-1].dataIni)
+            else:
+                self.Films((i-3)/10 * 3, 0.6, i-1, cineData.rooms[1].films[i-1].photoEnd, cineData.rooms[1].films[i-1].dataIni)
         self.proximaTelaButton()
         root.mainloop()
 
@@ -18,20 +27,23 @@ class Application:
         self.root.title("Projeto Cinema")
         self.root.geometry("1366x760")
         self.root.resizable(True, True)
-        self.root.minsize(width=488, height=788)
+        self.root.minsize(width=588, height=888)
         self.root.iconbitmap('src/assets/icons/icon.ico')
         label1 = Label(root, image = self.imgBg) 
-        label1.place(x=0, y=0, relwidth=1, relheight=1)
+        label1.pack(expand=True)
 
     def rooms(self):
         self.frameRooms = Frame(self.root,background="Black")
-        self.frameRooms.place(x= 500, y= 20, width= 300, height= 100, )
+        self.frameRooms.place(relx=0.37, rely=0.05, width= 300, height= 100, )
         self.labelRooms = Label(self.frameRooms, text="SALA", bg="Black",fg="White",font="Times 20 bold",anchor=W)
         self.labelRooms.place(x=120,y=10)
         
-    def addRoom(self):
-        self.frameAddRoom = Frame(self.root)
-        self.frameAddRoom.place(relx= 0.1, rely= 0.6, relwidth= 0.8, relheight= 0.2)
+    def Films(self, x, y, z, photo, data):
+        self.frameFilms = Frame(self.root)
+        self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo)))
+        labelFilm = Label(self.frameFilms, image = self.imgFilm[z])
+        labelFilm.pack(expand=True)
+        self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.2, relheight= 0.3)
     
     def tela2(self):
         self.tela_dois = tk.Toplevel()
