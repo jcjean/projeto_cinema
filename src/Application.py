@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 from Cine import Cine
-from Film import Film
 
 root = tk.Tk()
 
@@ -11,7 +10,7 @@ class Application:
     def __init__(self):
         cineData = Cine()
         self.root = root
-        self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png"))
+        self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png").resize([self.root.winfo_screenwidth(), self.root.winfo_screenheight()]))
         self.imgFilm = []
         self.tela()
         self.rooms()
@@ -21,16 +20,28 @@ class Application:
             else:
                 self.Films((i-3)/10 * 3, 0.6, i-1, cineData.rooms[1].films[i-1].photoEnd, cineData.rooms[1].films[i-1].dataIni)
         self.proximaTelaButton()
+        self.root.bind("<F11>", self.toggle_fullscreen)
+        self.root.bind("<Escape>", self.end_fullscreen)
         root.mainloop()
 
     def tela(self):
         self.root.title("Projeto Cinema")
-        self.root.geometry("1366x760")
+        self.root.geometry(f'{self.root.winfo_screenwidth()}x{self.root.winfo_screenheight()}')
         self.root.resizable(True, True)
         self.root.minsize(width=588, height=888)
         self.root.iconbitmap('src/assets/icons/icon.ico')
+        root.state('zoomed')
+        root.attributes("-fullscreen", True)
         label1 = Label(root, image = self.imgBg) 
         label1.pack(expand=True)
+    
+    def toggle_fullscreen(self, event=None):
+        self.state = not self.state
+        self.root.attributes("-fullscreen", self.state)
+
+    def end_fullscreen(self, event=None):
+        self.state = False
+        self.root.attributes("-fullscreen", False)
 
     def rooms(self):
         self.frameRooms = Frame(self.root,background="Black")
@@ -39,11 +50,11 @@ class Application:
         self.labelRooms.place(x=120,y=10)
         
     def Films(self, x, y, z, photo, data):
-        self.frameFilms = Frame(self.root)
-        self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo)))
+        self.frameFilms = Frame(self.root, bg="red")
+        self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.frameFilms.winfo_screenwidth()*0.15), int(self.frameFilms.winfo_screenheight()*0.3)])))
         labelFilm = Label(self.frameFilms, image = self.imgFilm[z])
         labelFilm.pack(expand=True)
-        self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.2, relheight= 0.3)
+        self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
     
     def tela2(self):
         self.tela_dois = tk.Toplevel()
