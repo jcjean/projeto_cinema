@@ -1,6 +1,7 @@
 from cProfile import label
 import tkinter as tk
 from tkinter import *
+from turtle import color
 from PIL import ImageTk, Image
 from Cine import Cine
 
@@ -52,8 +53,10 @@ class Application:
     def Films(self, x, y, z, photo, data):
         self.frameFilms = Frame(self.root, bg="red")
         self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.frameFilms.winfo_screenwidth()*0.15), int(self.frameFilms.winfo_screenheight()*0.3)])))
-        labelFilm = Label(self.frameFilms, image = self.imgFilm[z])
-        labelFilm.pack(expand=True)
+        labelFilmPhoto = Label(self.frameFilms, image = self.imgFilm[z])
+        labelFilmPhoto.pack(expand=True)
+        labelFilmData = Button(self.root, text=data, bg="black", foreground="white", font=("robotomono", 20, "bold"), anchor="center", bd="0", command=self.tela2)
+        labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
         self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
     
     def tela2(self):
