@@ -10,6 +10,14 @@ class Film:
         self.__photoEnd = photoEnd
         self.__dataIni = dataIni
         self.__dataEnd = dataEnd
+
+    def registerSeats(self, name, number, ids):
+        for id in ids:
+            for seat in self.seats:
+                if id == seat.id:
+                    seat.owner = name
+                    seat.ownerNumber = number
+                    seat.occupied = True
     
     @property
     def nameFilm(self):
