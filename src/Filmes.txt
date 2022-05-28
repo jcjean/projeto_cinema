@@ -27,14 +27,14 @@ src/assets/imgs/TheNorthman.jpg
 01:00
 Sala 02
 6
-The Dog
-src/assets/imgs/TheDog.jpg
-11:00
-13:00
 A Pureza
 src/assets/imgs/APureza.jpg
 13:20
 15:20
+The Dog
+src/assets/imgs/TheDog.jpg
+11:00
+13:00
 Father Stu
 src/assets/imgs/FatherStu.jpg
 15:40

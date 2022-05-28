@@ -3,9 +3,9 @@ from Seat import Seat
 class Film:
     def __init__(self, nameFilm, photoEnd, dataIni, dataEnd):
         self.__seats = list()
-        for i in range(26):
-            for j in range(9):
-                self.__seats.append( Seat(f'{ord("A") + i}' + f"{j}"))
+        for i in range(0, 10):
+            for j in range(1, 21):
+                self.__seats.append( Seat(f'{chr(ord("A") + i)}' + f"{j}"))
         self.__nameFilm = nameFilm
         self.__photoEnd = photoEnd
         self.__dataIni = dataIni
@@ -18,6 +18,14 @@ class Film:
     @nameFilm.setter
     def nameFilm(self, nameFilm):
         self.__nameFilm = nameFilm
+
+    @property
+    def seats(self):
+        return self.__seats
+
+    @seats.setter
+    def seats(self, seats):
+        self.__seats = seats
     
     @property
     def photoEnd(self):
