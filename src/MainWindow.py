@@ -24,16 +24,17 @@ class MainWindow(HeritageWindow):
         self.labelRooms = Label(self.frameRooms, text=f'{self.cineData.rooms[self.selectedRoom].name}', bg="black",fg="white",font="robotomono 20 bold",anchor="center")
         self.labelRooms.pack(expand=True)
 
-        self.buttonPreviousRoom = Button(self.root, bg="white", fg="black", text="PREVIOUS", font=("robotomono", 15, "bold"), command= lambda: self.selectRoom(-1))
-        self.buttonPreviousRoom.place(relx=0.365, rely=0.05, relwidth= 0.06, relheight= 0.05)
-        self.buttonNextRoom = Button(self.root, bg="white", fg="black", text="NEXT", font=("robotomono", 15, "bold"), command= lambda: self.selectRoom(1))
-        self.buttonNextRoom.place(relx=0.525, rely=0.05, relwidth= 0.06, relheight= 0.05)
+        self.buttonPreviousRoom = Button(self.root, bg="white", fg="black", text="PREVIOUS", font=("robotomono", 13, "bold"), command= lambda: self.selectRoom(-1))
+        self.buttonPreviousRoom.place(relx=0.365, rely=0.05, relwidth= 0.07, relheight= 0.04)
+        self.buttonNextRoom = Button(self.root, bg="white", fg="black", text="NEXT", font=("robotomono", 14, "bold"), command= lambda: self.selectRoom(1))
+        self.buttonNextRoom.place(relx=0.525, rely=0.05, relwidth= 0.06, relheight= 0.04)
         
     def Films(self, x, y, z, photo, data):
         self.frameFilms = Frame(self.root, bg="red")
         self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.frameFilms.winfo_screenwidth()*0.15), int(self.frameFilms.winfo_screenheight()*0.3)])))
         labelFilmPhoto = Label(self.frameFilms, image = self.imgFilm[z])
         labelFilmPhoto.pack(expand=True)
+        
         labelFilmData = Button(self.root, text=data, bg="black", fg="white", font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
         labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
         self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
@@ -54,7 +55,6 @@ class MainWindow(HeritageWindow):
             self.selectedRoom += z
         for widget in self.root.winfo_children():
             widget.destroy()
-        from MainWindow import MainWindow
         MainWindow(self.cineData, self.selectedRoom, self.selectedFilm)
 
 MainWindow()

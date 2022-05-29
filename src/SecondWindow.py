@@ -23,20 +23,20 @@ class SecondWindow(HeritageWindow):
         label2 = Label(self.root, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
         label2.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)
         self.nomeCliente = Entry(self.root)
-        self.nomeCliente.place(relx=0.46, rely=0.055, relwidth=0.10, relheight=0.022)
+        self.nomeCliente.place(relx=0.46, rely=0.058, relwidth=0.10, relheight=0.022)
 
         label3 = Label(self.root, text="Telefone:",bg="black",fg="white",font=("robotomono", 12, "bold"),anchor=W)
         label3.place(relx=0.41, rely=0.083, relwidth=0.05, relheight=0.022)
         self.numeroCliente = Entry(self.root)
-        self.numeroCliente.place(relx=0.46, rely=0.083, relwidth=0.10, relheight=0.022)
+        self.numeroCliente.place(relx=0.46, rely=0.085, relwidth=0.10, relheight=0.022)
     
     def btCancelar(self):
         button1 = Button(self.root, text="Cancelar", bg="red",font=("robotomono", 11, "bold"), anchor="center", command=self.cancelOperation)
-        button1.place(relx=0.41, rely=0.12, relwidth=0.05, relheight=0.04)
+        button1.place(relx=0.41, rely=0.12, relwidth=0.06, relheight=0.04)
 
     def btConfirmar(self):
         button2 = Button(self.root, text="Confirmar", bg="#80ff80",font=("robotomono", 11, "bold"), anchor="center" , command= lambda : self.confirmSeats(self.nomeCliente.get(), self.numeroCliente.get(), self.selectedSeats))
-        button2.place(relx=0.51, rely=0.12, relwidth=0.05, relheight=0.04)
+        button2.place(relx=0.51, rely=0.12, relwidth=0.06, relheight=0.04)
     
     def lbAlert(self):
         self.alertLabel = Label(self.root, bg="black", fg="#ff0000", font=("robotomono", 12, "bold"), anchor="center")
