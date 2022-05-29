@@ -11,9 +11,9 @@ class Application:
         self.cineData = Cine()
         self.selectedRoom = selectedRoom
         self.selectedFilm = selectedFilm
-        self.imgFilm = []
+        self.filmsImages = []
         self.selectedSeats = []
-        self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png").resize([self.root.winfo_screenwidth(), self.root.winfo_screenheight()]))
+        self.imageBackGround = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png").resize([self.root.winfo_screenwidth(), self.root.winfo_screenheight()]))
         self.root.title("Projeto Cinema")
         self.root.geometry(f'{self.root.winfo_screenwidth()}x{self.root.winfo_screenheight()}')
         self.root.resizable(True, True)
@@ -22,63 +22,63 @@ class Application:
         self.root.state('zoomed')
         self.root.attributes("-fullscreen", True)
         self.root.bind("<F11>", self.toggleFullscreen)
-        self.root.bind("<Escape>", self.endWindow)
-        self.tela()
+        self.root.bind("<Escape>", self.endApplication)
+        self.firstWindow()
         self.root.mainloop()
 
-    def tela(self):
-        self.telaLabel = Label(self.root, image = self.imgBg) 
-        self.telaLabel.pack(expand=True)
-        self.imgFilm = []
-        self.rooms()
+    def firstWindow(self):
+        self.firstWindowLabel = Label(self.root, image = self.imageBackGround) 
+        self.firstWindowLabel.pack(expand=True)
+        self.filmsImages = []
+        self.roomsSelect()
         for i in range(1 , 7):
             if i <= 3:
-                self.Films(i/10 * 3, 0.2, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
+                self.filmsSelect(i/10 * 3, 0.2, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
             else:
-                self.Films((i-3)/10 * 3, 0.6, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
+                self.filmsSelect((i-3)/10 * 3, 0.6, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
     
     def toggleFullscreen(self, event=None):
         self.state = not self.root.attributes("-fullscreen")
         self.root.attributes("-fullscreen", self.state)
     
-    def endWindow(self, event=None):
+    def endApplication(self, event=None):
         self.root.destroy()
 
-    def rooms(self):
-        self.frameRooms = Frame(self.telaLabel, bg="black")
-        self.frameRooms.place(relx=0.425, rely=0.05, relwidth= 0.1, relheight= 0.05)
-        self.labelRooms = Label(self.frameRooms, text=f'{self.cineData.rooms[self.selectedRoom].name}', bg="black",fg="white",font=("robotomono", 20, "bold"),anchor="center")
-        self.labelRooms.pack(expand=True)
+    def roomsSelect(self):
+        self.roomsFrame = Frame(self.firstWindowLabel, bg="black")
+        self.roomsFrame.place(relx=0.425, rely=0.05, relwidth= 0.1, relheight= 0.05)
+        self.roomsLabel = Label(self.roomsFrame, text=f'{self.cineData.rooms[self.selectedRoom].name}', bg="black",fg="white",font=("robotomono", 20, "bold"),anchor="center")
+        self.roomsLabel.pack(expand=True)
 
-        self.buttonPreviousRoom = Button(self.telaLabel, bg="white", fg="black", text="ANTERIOR", font=("robotomono", 13, "bold"), command= lambda: self.selectRoom(-1))
-        self.buttonPreviousRoom.place(relx=0.355, rely=0.05, relwidth= 0.07, relheight= 0.04)
-        self.buttonNextRoom = Button(self.telaLabel, bg="white", fg="black", text="PRÓXIMO", font=("robotomono", 13, "bold"), command= lambda: self.selectRoom(1))
-        self.buttonNextRoom.place(relx=0.525, rely=0.05, relwidth= 0.07, relheight= 0.04)
+        self.roomButtonPrevious = Button(self.firstWindowLabel, bg="white", fg="black", text="ANTERIOR", font=("robotomono", 13, "bold"), command= lambda: self.roomSelectIndex(-1))
+        self.roomButtonPrevious.place(relx=0.355, rely=0.05, relwidth= 0.07, relheight= 0.04)
+        self.roomButtonNext = Button(self.firstWindowLabel, bg="white", fg="black", text="PRÓXIMO", font=("robotomono", 13, "bold"), command= lambda: self.roomSelectIndex(1))
+        self.roomButtonNext.place(relx=0.525, rely=0.05, relwidth= 0.07, relheight= 0.04)
 
-    def Films(self, x, y, z, photo, data):
-        self.frameFilms = Frame(self.telaLabel, bg="red")
-        self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.frameFilms.winfo_screenwidth()*0.15), int(self.frameFilms.winfo_screenheight()*0.3)])))
-        labelFilmPhoto = Label(self.frameFilms, image = self.imgFilm[z])
-        labelFilmPhoto.pack(expand=True)
+    def filmsSelect(self, x, y, index, photo, data):
+        self.filmsFrame = Frame(self.firstWindowLabel, bg="red")
+        self.filmsImages.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.filmsFrame.winfo_screenwidth()*0.15), int(self.filmsFrame.winfo_screenheight()*0.3)])))
+        filmLabelPhoto = Label(self.filmsFrame, image = self.filmsImages[index])
+        filmLabelPhoto.pack(expand=True)
         
-        labelFilmData = Button(self.telaLabel, text=self.checkSeats(data, z, 0), bg="black", fg=self.checkSeats(data, z, 1), font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
-        labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
-        self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
+        filmLabelData = Button(self.firstWindowLabel, text=self.checkSeats(data, index, 0), bg="black", fg=self.checkSeats(data, index, 1), font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.filmSelectIndex(index))
+        filmLabelData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
+        self.filmsFrame.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
 
-    def selectFilm(self, filmIndex):
+    def filmSelectIndex(self, filmIndex):
         self.selectedFilm = filmIndex   
-        self.telaLabel.pack_forget()
-        self.tela2()
+        self.firstWindowLabel.pack_forget()
+        self.secondWindow()
 
-    def selectRoom(self, z):
-        if z == -1 and self.selectedRoom == 0:
+    def roomSelectIndex(self, roomIndex):
+        if roomIndex == -1 and self.selectedRoom == 0:
             self.selectedRoom = len(self.cineData.rooms)-1
-        elif z == 1 and self.selectedRoom == len(self.cineData.rooms)-1:
+        elif roomIndex == 1 and self.selectedRoom == len(self.cineData.rooms)-1:
             self.selectedRoom = 0
         else:
-            self.selectedRoom += z
-        self.telaLabel.pack_forget()
-        self.tela()
+            self.selectedRoom += roomIndex
+        self.firstWindowLabel.pack_forget()
+        self.firstWindow()
     
     def checkSeats(self, data, film, operation):
         if operation == 0:
@@ -92,45 +92,45 @@ class Application:
                     return "white"
             return "red"
 
-    def tela2(self):
-        self.tela2Label = Label(self.root, image = self.imgBg) 
-        self.tela2Label.pack(expand=True)
+    def secondWindow(self):
+        self.secondWindowLabel = Label(self.root, image = self.imageBackGround) 
+        self.secondWindowLabel.pack(expand=True)
         self.selectedSeats = []
-        self.infos()
-        self.btCancelar()
-        self.btConfirmar()        
-        self.lbAlert()
+        self.clientInfoEntries()
+        self.cancelButtonOperation()
+        self.confirmButtonOperation()        
+        self.alertLabelOperation()
         self.seatButtons()
 
-    def infos(self):
-        label1 = Label(self.tela2Label, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].nameFilm, bg="black", fg="white", font="robotomono 22 bold", anchor="center")
-        label1.place(relx=0.41, rely=0.01, relwidth=0.17, relheight=0.035)
+    def clientInfoEntries(self):
+        filmNameLabel = Label(self.secondWindowLabel, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].nameFilm, bg="black", fg="white", font="robotomono 22 bold", anchor="center")
+        filmNameLabel.place(relx=0.41, rely=0.01, relwidth=0.17, relheight=0.035)
 
-        label2 = Label(self.tela2Label, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
-        label2.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)
-        self.nomeCliente = Entry(self.tela2Label)
-        self.nomeCliente.place(relx=0.47, rely=0.058, relwidth=0.10, relheight=0.022)
+        clientNameLabel = Label(self.secondWindowLabel, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
+        clientNameLabel.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)
+        self.clientNameEntry = Entry(self.secondWindowLabel)
+        self.clientNameEntry.place(relx=0.47, rely=0.058, relwidth=0.10, relheight=0.022)
 
-        label3 = Label(self.tela2Label, text="Telefone:",bg="black",fg="white",font=("robotomono", 12, "bold"),anchor=W)
-        label3.place(relx=0.41, rely=0.083, relwidth=0.06, relheight=0.022)
-        self.numeroCliente = Entry(self.tela2Label)
-        self.numeroCliente.place(relx=0.47, rely=0.085, relwidth=0.10, relheight=0.022)
+        clientNumberLabel = Label(self.secondWindowLabel, text="Telefone:",bg="black",fg="white",font=("robotomono", 12, "bold"),anchor=W)
+        clientNumberLabel.place(relx=0.41, rely=0.083, relwidth=0.06, relheight=0.022)
+        self.clientNumberEntry = Entry(self.secondWindowLabel)
+        self.clientNumberEntry.place(relx=0.47, rely=0.085, relwidth=0.10, relheight=0.022)
 
-    def btCancelar(self):
-        button1 = Button(self.tela2Label, text="Cancelar", bg="red",font=("robotomono", 11, "bold"), anchor="center", command=self.cancelOperation)
-        button1.place(relx=0.41, rely=0.12, relwidth=0.06, relheight=0.04)
+    def cancelButtonOperation(self):
+        cancelButton = Button(self.secondWindowLabel, text="Cancelar", bg="red",font=("robotomono", 11, "bold"), anchor="center", command=self.cancelOperation)
+        cancelButton.place(relx=0.41, rely=0.12, relwidth=0.06, relheight=0.04)
 
-    def btConfirmar(self):
-        button2 = Button(self.tela2Label, text="Confirmar", bg="#80ff80",font=("robotomono", 11, "bold"), anchor="center" , command= lambda : self.confirmSeats(self.nomeCliente.get(), self.numeroCliente.get(), self.selectedSeats))
-        button2.place(relx=0.51, rely=0.12, relwidth=0.06, relheight=0.04)
+    def confirmButtonOperation(self):
+        confirmButton = Button(self.secondWindowLabel, text="Confirmar", bg="#80ff80",font=("robotomono", 11, "bold"), anchor="center" , command= lambda : self.confirmSeats(self.clientNameEntry.get(), self.clientNumberEntry.get(), self.selectedSeats))
+        confirmButton.place(relx=0.51, rely=0.12, relwidth=0.06, relheight=0.04)
     
-    def lbAlert(self):
-        self.alertLabel = Label(self.tela2Label, bg="black", fg="#ff0000", font=("robotomono", 12, "bold"), anchor="center")
+    def alertLabelOperation(self):
+        self.alertLabel = Label(self.secondWindowLabel, bg="black", fg="#ff0000", font=("robotomono", 12, "bold"), anchor="center")
         self.alertLabel.place(relx=0.31, rely=0.17, relwidth=0.35, relheight=0.04)
 
     def cancelOperation(self):
-        self.tela2Label.pack_forget()
-        self.tela()
+        self.secondWindowLabel.pack_forget()
+        self.firstWindow()
 
     def confirmSeats(self, name, number, seats):
         patternName = "^[A-Za-z]*$"
@@ -149,8 +149,8 @@ class Application:
             self.alertLabel["text"] = "Necessário pelo menos um assento marcado!"
         else:
             self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].registerSeats(name, number, seats)
-            self.tela2Label.pack_forget()
-            self.tela()
+            self.secondWindowLabel.pack_forget()
+            self.firstWindow()
         
 
 
@@ -165,23 +165,23 @@ class Application:
             button["bg"] = "blue"
 
     def seatButtons(self):
-        a = 0
+        indexSeat = 0
         for i in range(1, 11):
             for j in range(1, 21):
                 if j < 11:
-                    button = Button(self.tela2Label, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
-                    if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
+                    button = Button(self.secondWindowLabel, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[indexSeat].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
+                    if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[indexSeat].occupied == True:
                         button["bg"] = "red"
                         button["state"] = "disabled"
                     button["command"] = lambda button=button: self.selectSeat(button["text"],button)
                     button.place(relx= j/46+0.2, rely= i/15+0.2, relwidth=0.020 , relheight=0.04)
                 else:
-                    button = Button(self.tela2Label, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
-                    if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
+                    button = Button(self.secondWindowLabel, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[indexSeat].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
+                    if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[indexSeat].occupied == True:
                         button["bg"] = "red"
                         button["state"] = "disabled"
                     button["command"] = lambda button=button: self.selectSeat(button["text"],button)
                     button.place(relx= j/46+0.3, rely= i/15+0.2, relwidth=0.02 , relheight=0.04)
-                a+=1
+                indexSeat+=1
 
 Application(0, 0)
