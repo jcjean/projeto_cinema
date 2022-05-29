@@ -7,15 +7,15 @@ from HeritageWindow import HeritageWindow
 class MainWindow(HeritageWindow):
     def __init__(self, cineData=0, selectedRoom=0, selectedFilm=0):
         super().__init__(cineData)
-        self.selectedRoom = selectedRoom
+        self.selectedRoom = int(selectedRoom)
         self.selectedFilm = selectedFilm
         self.imgFilm = []
         self.rooms()
         for i in range(1 , 7):
             if i <= 3:
-                self.Films(i/10 * 3, 0.2, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[1].films[i-1].dataIni)
+                self.Films(i/10 * 3, 0.2, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
             else:
-                self.Films((i-3)/10 * 3, 0.6, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[1].films[i-1].dataIni)
+                self.Films((i-3)/10 * 3, 0.6, i-1, self.cineData.rooms[self.selectedRoom].films[i-1].photoEnd, self.cineData.rooms[self.selectedRoom].films[i-1].dataIni)
         self.root.mainloop()
 
     def rooms(self):
@@ -54,7 +54,6 @@ class MainWindow(HeritageWindow):
             self.selectedRoom += z
         for widget in self.root.winfo_children():
             widget.destroy()
-        from MainWindow import MainWindow
         MainWindow(self.cineData, self.selectedRoom, self.selectedFilm)
 
 MainWindow()
