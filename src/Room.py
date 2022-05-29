@@ -5,8 +5,8 @@ class Room:
         self.__name = name
         self.__films = list()
 
-    def addFilm(self, name, endPhoto, initData, endData):
-        self.__films.append( Film(name, endPhoto, initData, endData))
+    def addFilm(self, name, endPhoto, initData):
+        self.__films.append( Film(name, endPhoto, initData))
 
     @property
     def name(self):

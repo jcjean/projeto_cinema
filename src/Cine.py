@@ -13,7 +13,7 @@ class Cine:
             self.__rooms.append(Room(self.__arquivo.readline().split("\n")[0]))
             numberFilms = self.__arquivo.readline()
             for a in range(int(numberFilms)):
-                self.__rooms[i].addFilm(self.__arquivo.readline().split("\n")[0], self.__arquivo.readline().split("\n")[0], self.__arquivo.readline().split("\n")[0], self.__arquivo.readline())
+                self.__rooms[i].addFilm(self.__arquivo.readline().split("\n")[0], self.__arquivo.readline().split("\n")[0], self.__arquivo.readline().split("\n")[0])
     
     @property
     def rooms(self):

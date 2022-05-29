@@ -43,8 +43,7 @@ class SecondWindow(HeritageWindow):
         self.alertLabel.place(relx=0.36, rely=0.17, relwidth=0.25, relheight=0.04)
 
     def cancelOperation(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
+        self.root.destroy()
         from MainWindow import MainWindow
         MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 
@@ -57,8 +56,7 @@ class SecondWindow(HeritageWindow):
             self.alertLabel["text"] = "Necessário pelo menos um assento marcado!"
         else:
             self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].registerSeats(name, number, seats)
-            for widget in self.root.winfo_children():
-                widget.destroy()
+            self.root.destroy()
             from MainWindow import MainWindow
             MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 

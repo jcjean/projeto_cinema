@@ -2,11 +2,9 @@ import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 
-root = tk.Tk()
-
 class HeritageWindow:
     def __init__(self):
-        self.root = root
+        self.root = tk.Tk()
         self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png").resize([self.root.winfo_screenwidth(), self.root.winfo_screenheight()]))
         self.tela()
         self.root.bind("<F11>", self.toggleFullscreen)
@@ -28,6 +26,4 @@ class HeritageWindow:
         self.root.attributes("-fullscreen", self.state)
     
     def endWindow(self, event=None):
-        for widget in self.root.winfo_children():
-            widget.destroy()
         self.root.destroy()

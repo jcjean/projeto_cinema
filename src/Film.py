@@ -1,7 +1,7 @@
 from Seat import Seat
 
 class Film:
-    def __init__(self, nameFilm, photoEnd, dataIni, dataEnd):
+    def __init__(self, nameFilm, photoEnd, dataIni):
         self.__seats = list()
         for i in range(0, 10):
             for j in range(1, 21):
@@ -9,7 +9,6 @@ class Film:
         self.__nameFilm = nameFilm
         self.__photoEnd = photoEnd
         self.__dataIni = dataIni
-        self.__dataEnd = dataEnd
 
     def registerSeats(self, name, number, ids):
         for id in ids:
@@ -50,11 +49,3 @@ class Film:
     @dataIni.setter
     def dataIni(self, dataIni):
         self.__dataIni = dataIni
-    
-    @property
-    def dataEnd(self):
-        return self.__dataEnd
-
-    @dataEnd.setter
-    def dataEnd(self, dataEnd):
-        self.__dataEnd = dataEnd

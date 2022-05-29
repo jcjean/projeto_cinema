@@ -36,14 +36,13 @@ class MainWindow(HeritageWindow):
         labelFilmPhoto = Label(self.frameFilms, image = self.imgFilm[z])
         labelFilmPhoto.pack(expand=True)
         
-        labelFilmData = Button(self.root, text=data, bg="black", fg="white", font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
+        labelFilmData = Button(self.root, text=self.checkSeats(data, z), bg="black", fg="white", font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
         labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
         self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
 
     def selectFilm(self, filmIndex):
         self.selectedFilm = filmIndex   
-        for widget in self.root.winfo_children():
-            widget.destroy()
+        self.root.destroy()
         from SecondWindow import SecondWindow
         SecondWindow(self.cineData, self.selectedRoom, self.selectedFilm)
 
@@ -54,9 +53,14 @@ class MainWindow(HeritageWindow):
             self.selectedRoom = 0
         else:
             self.selectedRoom += z
-        for widget in self.root.winfo_children():
-            widget.destroy()
+        self.root.destroy()
         MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
+    
+    def checkSeats(self, data, film):
+        for seat in self.cineData.rooms[self.selectedRoom].films[film].seats:
+            if seat.occupied == False:
+                return data
+        return "CHEIO"
 
 cineData = Cine()
 MainWindow(0, 0, cineData)
