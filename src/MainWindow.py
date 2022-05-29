@@ -4,9 +4,9 @@ from HeritageWindow import HeritageWindow
 
 
 class MainWindow(HeritageWindow):
-    def __init__(self, cineData=0, selectedRoom=0, selectedFilm=0):
+    def __init__(self, selectedRoom, selectedFilm, cineData):
         super().__init__(cineData)
-        self.selectedRoom = int(selectedRoom)
+        self.selectedRoom = selectedRoom
         self.selectedFilm = selectedFilm
         self.imgFilm = []
         self.rooms()
@@ -38,8 +38,8 @@ class MainWindow(HeritageWindow):
         labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
         self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
 
-    def selectFilm(self, z):
-        self.selectedFilm = z   
+    def selectFilm(self, filmIndex):
+        self.selectedFilm = filmIndex   
         for widget in self.root.winfo_children():
             widget.destroy()
         from SecondWindow import SecondWindow
@@ -54,6 +54,6 @@ class MainWindow(HeritageWindow):
             self.selectedRoom += z
         for widget in self.root.winfo_children():
             widget.destroy()
-        MainWindow(self.cineData, self.selectedRoom, self.selectedFilm)
+        MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 
-MainWindow()
+MainWindow(0, 0, None)

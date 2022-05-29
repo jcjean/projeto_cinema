@@ -6,8 +6,8 @@ from Cine import Cine
 root = tk.Tk()
 
 class HeritageWindow:
-    def __init__(self, cineData=0):
-        if cineData == 0:
+    def __init__(self, cineData):
+        if cineData == None:
             self.cineData = Cine()
         else:
             self.cineData = cineData
