@@ -45,7 +45,7 @@ class SecondWindow(HeritageWindow):
         for widget in self.root.winfo_children():
             widget.destroy()
         from MainWindow import MainWindow
-        MainWindow(self.cineData, self.selectedRoom, self.selectedFilm)
+        MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 
     def confirmSeats(self, name, number, seats):
         if name == "":
@@ -59,33 +59,35 @@ class SecondWindow(HeritageWindow):
             for widget in self.root.winfo_children():
                 widget.destroy()
             from MainWindow import MainWindow
-            MainWindow(self.cineData, self.selectedRoom, self.selectedFilm)
+            MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 
 
     def selectSeat(self, id, button):
-        if  button["bg"] == "cyan":
+        if  button["bg"] == "blue":
             self.selectedSeats.append(id)
-            button["bg"] = "orange"
-        elif  button["bg"] == "orange":
+            button["bg"] = "darkorange"
+        elif  button["bg"] == "darkorange":
             for seat in self.selectedSeats:
                 if seat == id:
                     self.selectedSeats.remove(seat)
-            button["bg"] = "cyan"
+            button["bg"] = "blue"
 
     def seatButtons(self):
         a = 0
         for i in range(1, 11):
             for j in range(1, 21):
                 if j < 11:
-                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", command=self.selectSeat)
+                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
                     if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
                         button["bg"] = "red"
+                        button["state"] = "disabled"
                     button["command"] = lambda button=button: self.selectSeat(button["text"],button)
                     button.place(relx= j/46+0.2, rely= i/15+0.2, relwidth=0.020 , relheight=0.04)
                 else:
-                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", command=self.selectSeat)
+                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="blue", fg="white", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
                     if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
                         button["bg"] = "red"
+                        button["state"] = "disabled"
                     button["command"] = lambda button=button: self.selectSeat(button["text"],button)
                     button.place(relx= j/46+0.3, rely= i/15+0.2, relwidth=0.02 , relheight=0.04)
                 a+=1
