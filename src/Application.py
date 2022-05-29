@@ -50,9 +50,9 @@ class Application:
         self.labelRooms = Label(self.frameRooms, text=f'{self.cineData.rooms[self.selectedRoom].name}', bg="black",fg="white",font="robotomono 20 bold",anchor="center")
         self.labelRooms.pack(expand=True)
 
-        self.buttonPreviousRoom = Button(self.root, bg="white", fg="black", text="PREVIOUS", font=("robotomono", 15, "bold"), command= lambda: self.selectRoom(-1))
+        self.buttonPreviousRoom = Button(self.root, bg="white", fg="black", text="PREVIOUS", font=("robotomono", 12, "bold"), command= lambda: self.selectRoom(-1))
         self.buttonPreviousRoom.place(relx=0.365, rely=0.05, relwidth= 0.06, relheight= 0.05)
-        self.buttonNextRoom = Button(self.root, bg="white", fg="black", text="NEXT", font=("robotomono", 15, "bold"), command= lambda: self.selectRoom(1))
+        self.buttonNextRoom = Button(self.root, bg="white", fg="black", text="NEXT", font=("robotomono", 12, "bold"), command= lambda: self.selectRoom(1))
         self.buttonNextRoom.place(relx=0.525, rely=0.05, relwidth= 0.06, relheight= 0.05)
         
     def Films(self, x, y, z, photo, data):
@@ -60,7 +60,7 @@ class Application:
         self.imgFilm.append(ImageTk.PhotoImage(Image.open(photo).resize([int(self.frameFilms.winfo_screenwidth()*0.15), int(self.frameFilms.winfo_screenheight()*0.3)])))
         labelFilmPhoto = Label(self.frameFilms, image = self.imgFilm[z])
         labelFilmPhoto.pack(expand=True)
-        labelFilmData = Button(self.root, text=data, bg="black", fg="white", font=("robotomono", 20, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
+        labelFilmData = Button(self.root, text=data, bg="black", fg="white", font=("robotomono", 18, "bold"), anchor="center", bd="0", command= lambda: self.selectFilm(z))
         labelFilmData.place(relx= x-0.173, rely= y+0.30, relwidth= 0.1, relheight= 0.05)
         self.frameFilms.place(relx= x-0.2, rely= y, relwidth= 0.15, relheight= 0.3)
 
