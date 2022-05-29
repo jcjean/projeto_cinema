@@ -17,7 +17,7 @@ class SecondWindow(HeritageWindow):
 
     def infos(self):
         label1 = Label(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].nameFilm, bg="black", fg="white", font="robotomono 22 bold", anchor="center")
-        label1.place(relx=0.41, rely=0.01, relwidth=0.15, relheight=0.035)
+        label1.place(relx=0.41, rely=0.01, relwidth=0.17, relheight=0.035)
 
         label2 = Label(self.root, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
         label2.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)
