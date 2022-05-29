@@ -1,5 +1,4 @@
 from tkinter import *
-from PIL import ImageTk, Image
 from HeritageWindow import HeritageWindow
 
 class SecondWindow(HeritageWindow):
@@ -10,9 +9,9 @@ class SecondWindow(HeritageWindow):
         self.selectedSeats = []
         self.infos()
         self.btCancelar()
-        self.btConfirmar()
-        self.seatButtons()
+        self.btConfirmar()        
         self.lbAlert()
+        self.seatButtons()
         self.root.mainloop()
 
 
@@ -23,12 +22,12 @@ class SecondWindow(HeritageWindow):
         label2 = Label(self.root, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
         label2.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)
         self.nomeCliente = Entry(self.root)
-        self.nomeCliente.place(relx=0.46, rely=0.058, relwidth=0.10, relheight=0.022)
+        self.nomeCliente.place(relx=0.47, rely=0.058, relwidth=0.10, relheight=0.022)
 
         label3 = Label(self.root, text="Telefone:",bg="black",fg="white",font=("robotomono", 12, "bold"),anchor=W)
-        label3.place(relx=0.41, rely=0.083, relwidth=0.05, relheight=0.022)
+        label3.place(relx=0.41, rely=0.083, relwidth=0.06, relheight=0.022)
         self.numeroCliente = Entry(self.root)
-        self.numeroCliente.place(relx=0.46, rely=0.085, relwidth=0.10, relheight=0.022)
+        self.numeroCliente.place(relx=0.47, rely=0.085, relwidth=0.10, relheight=0.022)
     
     def btCancelar(self):
         button1 = Button(self.root, text="Cancelar", bg="red",font=("robotomono", 11, "bold"), anchor="center", command=self.cancelOperation)

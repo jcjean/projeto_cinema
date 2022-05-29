@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 from HeritageWindow import HeritageWindow
