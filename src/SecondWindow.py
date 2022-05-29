@@ -2,8 +2,9 @@ from tkinter import *
 from HeritageWindow import HeritageWindow
 
 class SecondWindow(HeritageWindow):
-    def __init__(self, cineData, selectedRoom=0, selectedFilm=0):
-        super().__init__(cineData)
+    def __init__(self, cineData, selectedRoom, selectedFilm):
+        super().__init__()
+        self.cineData = cineData
         self.selectedRoom = selectedRoom
         self.selectedFilm = selectedFilm
         self.selectedSeats = []

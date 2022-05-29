@@ -1,11 +1,13 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from HeritageWindow import HeritageWindow
+from Cine import Cine
 
 
 class MainWindow(HeritageWindow):
     def __init__(self, selectedRoom, selectedFilm, cineData):
-        super().__init__(cineData)
+        super().__init__()
+        self.cineData = cineData
         self.selectedRoom = selectedRoom
         self.selectedFilm = selectedFilm
         self.imgFilm = []
@@ -56,4 +58,5 @@ class MainWindow(HeritageWindow):
             widget.destroy()
         MainWindow(self.selectedRoom, self.selectedFilm, self.cineData)
 
-MainWindow(0, 0, None)
+cineData = Cine()
+MainWindow(0, 0, cineData)

@@ -1,16 +1,11 @@
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
-from Cine import Cine
 
 root = tk.Tk()
 
 class HeritageWindow:
-    def __init__(self, cineData):
-        if cineData == None:
-            self.cineData = Cine()
-        else:
-            self.cineData = cineData
+    def __init__(self):
         self.root = root
         self.imgBg = ImageTk.PhotoImage(Image.open("src/assets/imgs/background.png").resize([self.root.winfo_screenwidth(), self.root.winfo_screenheight()]))
         self.tela()
