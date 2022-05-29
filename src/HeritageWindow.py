@@ -29,7 +29,7 @@ class HeritageWindow:
         label1.pack(expand=True)
 
     def toggleFullscreen(self, event=None):
-        self.state = not self.state
+        self.state = not self.root.attributes("-fullscreen")
         self.root.attributes("-fullscreen", self.state)
     
     def endWindow(self, event=None):
