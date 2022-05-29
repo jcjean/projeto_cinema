@@ -1,9 +1,8 @@
 from tkinter import *
-from PIL import ImageTk, Image
 from HeritageWindow import HeritageWindow
 
 class SecondWindow(HeritageWindow):
-    def __init__(self, cineData, selectedRoom=0, selectedFilm=0):
+    def __init__(self, cineData, selectedRoom, selectedFilm):
         super().__init__(cineData)
         self.selectedRoom = selectedRoom
         self.selectedFilm = selectedFilm
@@ -78,14 +77,14 @@ class SecondWindow(HeritageWindow):
         for i in range(1, 11):
             for j in range(1, 21):
                 if j < 11:
-                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", font=("robotomono", 10, "bold"), command=self.selectSeat)
+                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
                     if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
                         button["bg"] = "red"
                         button["state"] = "disabled"
                     button["command"] = lambda button=button: self.selectSeat(button["text"],button)
                     button.place(relx= j/46+0.2, rely= i/15+0.2, relwidth=0.020 , relheight=0.04)
                 else:
-                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", font=("robotomono", 10, "bold"), command=self.selectSeat)
+                    button = Button(self.root, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].id, bg="cyan", font=("robotomono", 10, "bold"), relief=FLAT, command=self.selectSeat)
                     if self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].seats[a].occupied == True:
                         button["bg"] = "red"
                         button["state"] = "disabled"
