@@ -103,8 +103,8 @@ class Application:
         self.seatButtons()
 
     def clientInfoEntries(self):
-        filmNameLabel = Label(self.secondWindowLabel, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].nameFilm, bg="black", fg="white", font="robotomono 22 bold", anchor="center")
-        filmNameLabel.place(relx=0.41, rely=0.01, relwidth=0.17, relheight=0.035)
+        filmNameLabel = Label(self.secondWindowLabel, text=self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].nameFilm, bg="black", fg="white", font="robotomono 20 bold", anchor="center")
+        filmNameLabel.place(relx=0.39, rely=0.01, relwidth=0.20, relheight=0.035)
 
         clientNameLabel = Label(self.secondWindowLabel, text="Nome:", bg="black",fg="white",font=("robotomono", 12, "bold"), anchor=W)
         clientNameLabel.place(relx=0.41, rely=0.055, relwidth=0.05, relheight=0.022)

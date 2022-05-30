@@ -21,8 +21,8 @@ src/assets/imgs/TheNorthman.jpg
 23:00
 Sala 02
 6
-A Pureza
-src/assets/imgs/APureza.jpg
+Animais Fantasticos
+src/assets/imgs/animaisFantasticos.jpg
 11:00
 The Dog
 src/assets/imgs/TheDog.jpg
@@ -30,14 +30,14 @@ src/assets/imgs/TheDog.jpg
 Father Stu
 src/assets/imgs/FatherStu.jpg
 15:40
-Sonic 2
-src/assets/imgs/Sonic2.jpg
+Top Gun: Maverick
+src/assets/imgs/Topgun.jpg
 18:00
 Doutor Estranho
 src/assets/imgs/DoutorEstranho.jpg
 20:20
-The Northman
-src/assets/imgs/TheNorthman.jpg
+The Batman
+src/assets/imgs/theBatman.jpg
 23:00
 Sala 03
 6
@@ -47,14 +47,14 @@ src/assets/imgs/APureza.jpg
 Sonic 2
 src/assets/imgs/Sonic2.jpg
 13:20
-Father Stu
-src/assets/imgs/FatherStu.jpg
+Animais Fantasticos
+src/assets/imgs/animaisFantasticos.jpg
 15:40
 The Northman
 src/assets/imgs/TheNorthman.jpg
 18:00
-Doutor Estranho
-src/assets/imgs/DoutorEstranho.jpg
+Jujutsu Kaisen 0
+src/assets/imgs/jujutsuKaisen.png
 20:20
 The Dog
 src/assets/imgs/TheDog.jpg
@@ -64,8 +64,8 @@ Sala 04
 The Northman
 src/assets/imgs/TheNorthman.jpg
 11:00
-The Dog
-src/assets/imgs/TheDog.jpg
+Jurassic World
+src/assets/imgs/jurassicWorld.jpg
 13:20
 Father Stu
 src/assets/imgs/FatherStu.jpg
@@ -73,45 +73,45 @@ src/assets/imgs/FatherStu.jpg
 Sonic 2
 src/assets/imgs/Sonic2.jpg
 18:00
-Doutor Estranho
-src/assets/imgs/DoutorEstranho.jpg
+Morbius
+src/assets/imgs/morbius.jpg
 20:20
 A Pureza
 src/assets/imgs/APureza.jpg
 23:00
 Sala 05
 6
-Father Stu
-src/assets/imgs/FatherStu.jpg
+Animais Fantasticos
+src/assets/imgs/animaisFantasticos.jpg
 11:00
-A Pureza
-src/assets/imgs/APureza.jpg
+Morbius
+src/assets/imgs/morbius.jpg
 13:20
-The Dog
-src/assets/imgs/TheDog.jpg
+Top Gun: Maverick
+src/assets/imgs/Topgun.jpg
 15:40
-The Northman
-src/assets/imgs/TheNorthman.jpg
+Jujutsu Kaisen 0
+src/assets/imgs/jujutsuKaisen.png
 18:00
-Doutor Estranho
-src/assets/imgs/DoutorEstranho.jpg
+Jurassic World
+src/assets/imgs/jurassicWorld.jpg
 20:20
-Sonic 2
-src/assets/imgs/Sonic2.jpg
+The Batman
+src/assets/imgs/theBatman.jpg
 23:00
 Sala 06
 6
-Father Stu
-src/assets/imgs/FatherStu.jpg
+The Batman
+src/assets/imgs/theBatman.jpg
 13:20
-The Dog
-src/assets/imgs/TheDog.jpg
+Morbius
+src/assets/imgs/morbius.jpg
 11:00
 Sonic 2
 src/assets/imgs/Sonic2.jpg
 15:40
-A Pureza
-src/assets/imgs/APureza.jpg
+Jujutsu Kaisen 0
+src/assets/imgs/jujutsuKaisen.png
 18:00
 The Northman
 src/assets/imgs/TheNorthman.jpg
