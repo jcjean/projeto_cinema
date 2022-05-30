@@ -1,3 +1,4 @@
+from mailbox import NotEmptyError
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
@@ -126,32 +127,41 @@ class Application:
     
     def alertLabelOperation(self):
         self.alertLabel = Label(self.secondWindowLabel, bg="black", fg="#ff0000", font=("robotomono", 12, "bold"), anchor="center")
-        self.alertLabel.place(relx=0.31, rely=0.17, relwidth=0.35, relheight=0.04)
+        self.alertLabel.place(relx=0.26, rely=0.17, relwidth=0.45, relheight=0.04)
 
     def cancelOperation(self):
         self.secondWindowLabel.pack_forget()
         self.firstWindow()
 
     def confirmSeats(self, name, number, seats):
-        patternName = "^[A-Za-z]*$"
-        patternNumber = "^[0-9]*$"
-        nameBool = bool(re.match(patternName, name))
-        numberBool = bool(re.match(patternNumber, str(number)))
-        if nameBool == False:
-            self.alertLabel["text"] = "Apenas letras no Nome!"
-        elif name == "":
-            self.alertLabel["text"] = "Digite o Nome!"
-        elif numberBool == False:
-            self.alertLabel["text"] = "Apenas Números no Telefone!"
-        elif number == "":
-            self.alertLabel["text"] = "Digite o Número!"
-        elif len(seats) == 0:
-            self.alertLabel["text"] = "Necessário pelo menos um assento marcado!"
-        else:
-            self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].registerSeats(name, number, seats)
-            self.secondWindowLabel.pack_forget()
-            self.firstWindow()
-        
+        try:
+            patternName = "^[A-Za-z]*$"
+            patternNumber = "^[0-9]*$"
+            nameBool = bool(re.match(patternName, name))
+            numberBool = bool(re.match(patternNumber, str(number)))
+            if nameBool == False:
+                raise ValueError("Invalid entry in name! only letters allowed")
+            elif name == "":
+                raise TypeError("Invalid entry in name! nothing typed")
+            elif numberBool == False:
+                raise ValueError("Invalid entry in number! only numbers allowed")
+            elif number == "":
+                raise TypeError("Invalid entry in number! nothing typed")
+            elif len(seats) == 0:
+                raise NotEmptyError("No seats selected! At least one must be selected")
+            else:
+                self.cineData.rooms[self.selectedRoom].films[self.selectedFilm].registerSeats(name, number, seats)
+                self.secondWindowLabel.pack_forget()
+                self.firstWindow()
+        except ValueError:
+            if nameBool == False:
+                self.alertLabel["text"] = "Nome Inválido! Apenas Letras."
+            else:
+                self.alertLabel["text"] = "Telefone Inválido! Apenas Números."
+        except TypeError:
+            self.alertLabel["text"] = "Nada foi digitado no nome ou telefone!"
+        except NotEmptyError:
+            self.alertLabel["text"] = "Pelo menos um assento deve ser selecionado!"
 
 
     def selectSeat(self, id, button):
